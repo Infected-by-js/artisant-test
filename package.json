@@ -14,6 +14,7 @@
     "axios": "^0.26.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-query": "^3.34.19",
     "react-scripts": "5.0.0",
     "styled-components": "^5.3.5",
     "typescript": "^4.4.2",
@@ -26,9 +27,7 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "rules": {
-      "no-anonymous-default-export": false
-    },
+    "rules": {},
     "extends": [
       "react-app",
       "react-app/jest"

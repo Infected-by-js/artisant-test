@@ -10,6 +10,7 @@ export const AppContent = styled.div`
   }
 `;
 export const ProductList = styled.ul`
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;

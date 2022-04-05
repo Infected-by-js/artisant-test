@@ -1,56 +1,46 @@
-import {useEffect, useMemo, useState} from 'react';
+import {useMemo, useState} from 'react';
+
 import type {ProductResponse} from './types/ProductResponse';
 import {Header, ProductCard, Container} from './components/';
-import ProductService from './api/ProductService';
 import * as S from './App.styled';
 import {PAGE_LIMIT} from './helpers/constants';
 import {Filter} from './components/filter/Filter';
-import {Product} from './types/Product';
+import {useProducts} from './hooks/useProducts';
 
 export const App = () => {
-  const [products, setProducts] = useState([]);
   const [isHiddenOutOfStock, setIsHiddenOutOfStock] = useState(false);
+  const {products, isLoading, error} = useProducts();
 
-  useEffect(() => {
-    const getProducts = async () => {
-      const data = await ProductService.getAll();
-      const dataLimited = data.slice(0, PAGE_LIMIT);
-
-      console.log(dataLimited);
-      setProducts(dataLimited);
-    };
-
-    getProducts();
-  }, []);
+  const limitedProducts = useMemo(() => {
+    if (!isLoading) return products.slice(0, PAGE_LIMIT);
+  }, [products, isLoading]);
 
   const filteredProducts = useMemo(() => {
     if (isHiddenOutOfStock) {
-      return products.filter(
+      return limitedProducts.filter(
         (product: ProductResponse) => product.quantity_available
       );
     }
-    return products;
-  }, [products, isHiddenOutOfStock]);
+    return limitedProducts;
+  }, [limitedProducts, isHiddenOutOfStock]);
 
   const handleHideOutOfStock = () => {
     setIsHiddenOutOfStock((prev) => !prev);
   };
 
   // FIXME: need to add page loader
-  if (!products.length) {
+  if (isLoading) {
     return <h1>Loading...</h1>;
   }
-
-  console.log(filteredProducts);
 
   return (
     <S.AppContent>
       <Header />
-      <Filter
-        isHiddenOutOfStock={isHiddenOutOfStock}
-        onHideOutOfStock={handleHideOutOfStock}
-      />
       <Container>
+        <Filter
+          isHiddenOutOfStock={isHiddenOutOfStock}
+          onHideOutOfStock={handleHideOutOfStock}
+        />
         <S.ProductList>
           {filteredProducts &&
             filteredProducts.map((product: ProductResponse) => (
