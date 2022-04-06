@@ -1,6 +1,7 @@
-import { FC } from "react";
-import * as S from "./ProductCard.styled";
-import { ProductCardAvatar } from "./ProductCardAvatar";
+import {FC} from 'react';
+import * as S from './ProductCard.styled';
+import {ProductCardAvatar} from './ProductCardAvatar';
+import {useObserver} from '../../hooks/useObserver';
 
 type Props = {
   avatarName: string;
@@ -12,15 +13,16 @@ type Props = {
 };
 
 export const ProductCard: FC<Props> = (props) => {
-  const { avatarName, author, name, quantity, quantityTotal, price } = props;
+  const {avatarName, author, name, quantity, quantityTotal, price} = props;
+  const {refEl, canShow} = useObserver();
 
   return (
-    <S.Card>
+    <S.Card ref={refEl}>
       <S.CardTop>
-        <ProductCardAvatar avatarName={avatarName} />
+        {canShow && <ProductCardAvatar avatarName={avatarName} />}
         <S.Author>
           created by
-          <S.NameLink href="/userId">{author}</S.NameLink>
+          <S.NameLink href="#">{author}</S.NameLink>
         </S.Author>
         <S.Title>{name}</S.Title>
       </S.CardTop>

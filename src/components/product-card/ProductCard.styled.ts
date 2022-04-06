@@ -1,12 +1,8 @@
-import styled from "styled-components";
-import {
-  color,
-  fontWeight,
-  deviceMinWidth
-} from "../../assets/styles/constants";
+import styled from 'styled-components';
+import {color, fontWeight, deviceMinWidth} from '../../assets/styles/constants';
 
 export const Card = styled.div.attrs({
-  tabIndex: 0
+  tabIndex: 0,
 })`
   display: flex;
   flex-direction: column;

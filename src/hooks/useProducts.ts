@@ -1,10 +1,10 @@
-import { useQuery } from "react-query";
-import { getProducts } from "../api/ProductService";
+import {useQuery} from 'react-query';
+import ProductService from '../api/ProductService';
 
-export const useProducts = (page: number, limit: number) => {
-  const requestAll = () => getProducts({ page, limit });
+export const useProducts = () => {
+  const requestAll = () => ProductService.getAll();
 
-  const { data: products, isLoading, error } = useQuery("products", requestAll);
+  const {data: products, isLoading, error} = useQuery('products', requestAll);
 
-  return { products, isLoading, error };
+  return {products, isLoading, error};
 };

@@ -1,19 +1,16 @@
-import styled from "styled-components";
-import {
-  fontWeight,
-  color,
-  deviceMinWidth
-} from "../../assets/styles/constants";
+import styled from 'styled-components';
+import {fontWeight, color, deviceMinWidth} from '../../assets/styles/constants';
 
 export const Filter = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 1rem;
 
   @media ${deviceMinWidth.tablet} {
-    flex-direction: row;
+    align-items: flex-end;
+    flex-direction: column;
   }
 `;
 
@@ -48,7 +45,7 @@ export const Label = styled.label`
 `;
 
 export const HiddenCheckbox = styled.input.attrs({
-  type: "checkbox"
+  type: 'checkbox',
 })`
   visibility: hidden;
   width: 0;

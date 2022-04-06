@@ -3,18 +3,18 @@ import * as S from './Filter.styled';
 
 type Props = {
   isAvailable: boolean;
-  showed: number;
+  onPage: number;
   total: number;
   handleToggleAvailable: () => void;
 };
 
 export const Filter: FC<Props> = (props) => {
-  const {isAvailable, showed, total, handleToggleAvailable} = props;
+  const {isAvailable, onPage, total, handleToggleAvailable} = props;
 
   return (
     <S.Filter>
       <S.Text>
-        Products on page: {showed} of {total}
+        Products on page: {onPage} of {total}
       </S.Text>
       <S.Label>
         {isAvailable ? 'show all' : 'hide unavailable'}

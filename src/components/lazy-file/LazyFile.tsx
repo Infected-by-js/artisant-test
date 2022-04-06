@@ -1,15 +1,14 @@
-import { FC, useState } from "react";
-import { FileType } from "../../types/File";
-import { LoaderProductCard } from "../loaders/LoaderProductCard";
-import { Spinner } from "../spinner/Spinner";
-import * as S from "./LazyFile.styled";
+import {FC, useState} from 'react';
+import {FileType} from '../../types/File';
+import {LoaderProductCard} from '../loaders/LoaderProductCard';
+import * as S from './LazyFile.styled';
 
 type Props = {
   src: string;
   fileType: FileType;
 };
 
-export const LazyFile: FC<Props> = ({ src, fileType }) => {
+export const LazyFile: FC<Props> = ({src, fileType}) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -19,7 +18,7 @@ export const LazyFile: FC<Props> = ({ src, fileType }) => {
 
   return (
     <>
-      {fileType === "img" ? (
+      {fileType === 'img' ? (
         <S.Image
           onLoad={() => setIsLoaded(true)}
           src={src}
