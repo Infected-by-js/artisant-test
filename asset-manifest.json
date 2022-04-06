@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/artisant-test/static/js/main.9be73d34.js",
+    "index.html": "/artisant-test/index.html",
+    "main.9be73d34.js.map": "/artisant-test/static/js/main.9be73d34.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.9be73d34.js"
+  ]
+}
