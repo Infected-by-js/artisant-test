@@ -1,66 +1,49 @@
-import {useMemo, useState} from 'react';
+import { useMemo, useState } from "react";
+import { useProducts } from "./hooks/useProducts";
+import { useFilterProducts } from "./hooks/useFilterProducts";
 
-import type {ProductResponse} from './types/ProductResponse';
-import {Header, ProductCard, Container} from './components/';
-import * as S from './App.styled';
-import {PAGE_LIMIT} from './helpers/constants';
-import {Filter} from './components/filter/Filter';
-import {useProducts} from './hooks/useProducts';
+import { PAGE_LIMIT } from "./helpers/constants";
+import {
+  Header,
+  ProductList,
+  Container,
+  Filter,
+  LoaderPage
+} from "./components/";
+
+let currentPage = 1;
 
 export const App = () => {
-  const [isHiddenOutOfStock, setIsHiddenOutOfStock] = useState(false);
-  const {products, isLoading, error} = useProducts();
+  const [isAvailable, setIsAvailable] = useState(false);
+  const { products, isLoading, error } = useProducts(currentPage, PAGE_LIMIT);
+  const filteredProducts = useFilterProducts(products, isAvailable);
 
-  const limitedProducts = useMemo(() => {
-    if (!isLoading) return products.slice(0, PAGE_LIMIT);
-  }, [products, isLoading]);
+  const showedProducts = useMemo(() => filteredProducts?.length, [
+    filteredProducts
+  ]);
+  const totalProducts = useMemo(() => products?.length, [products]);
 
-  const filteredProducts = useMemo(() => {
-    if (isHiddenOutOfStock) {
-      return limitedProducts.filter(
-        (product: ProductResponse) => product.quantity_available
-      );
-    }
-    return limitedProducts;
-  }, [limitedProducts, isHiddenOutOfStock]);
-
-  const handleHideOutOfStock = () => {
-    setIsHiddenOutOfStock((prev) => !prev);
+  const handleToggleAvailable = () => {
+    setIsAvailable((prev) => !prev);
   };
 
-  // FIXME: need to add page loader
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
   return (
-    <S.AppContent>
-      <Header />
-      <Container>
-        <Filter
-          isHiddenOutOfStock={isHiddenOutOfStock}
-          onHideOutOfStock={handleHideOutOfStock}
-        />
-        <S.ProductList>
-          {filteredProducts &&
-            filteredProducts.map((product: ProductResponse) => (
-              <S.ProductItem key={product.product_id}>
-                <ProductCard
-                  author={product.created_by.display_name}
-                  quantity={product.quantity_available}
-                  quantityTotal={product.quantity_nfts_created}
-                  name={product.name}
-                  price={product.initial_price}
-                  fileName={
-                    product.avatar.compressed
-                      ? product.avatar.compressed
-                      : product.avatar.original
-                  }
-                />
-              </S.ProductItem>
-            ))}
-        </S.ProductList>
-      </Container>
-    </S.AppContent>
+    <>
+      <LoaderPage isShow={isLoading} />
+      {!isLoading && (
+        <>
+          <Header />
+          <Container>
+            <Filter
+              isAvailable={isAvailable}
+              showed={showedProducts}
+              total={totalProducts}
+              handleToggleAvailable={handleToggleAvailable}
+            />
+            <ProductList products={filteredProducts} />
+          </Container>
+        </>
+      )}
+    </>
   );
 };

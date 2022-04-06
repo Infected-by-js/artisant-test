@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { color } from './constants';
+import { createGlobalStyle } from "styled-components";
+import { color, deviceMinWidth } from "./constants";
 
 export const GlobalStyles = createGlobalStyle`
   
@@ -34,10 +34,16 @@ export const GlobalStyles = createGlobalStyle`
   }
 
 #root {
+  margin: 1rem auto;
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  
+
+
+  @media ${deviceMinWidth.tablet} {
+    margin: 2rem auto;
+  }
 }
   ul, ol, li {
     list-style: none;

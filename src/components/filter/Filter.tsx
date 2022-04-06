@@ -1,21 +1,28 @@
+import {FC} from 'react';
 import * as S from './Filter.styled';
 
 type Props = {
-  isHiddenOutOfStock: boolean;
-  onHideOutOfStock: () => void;
+  isAvailable: boolean;
+  showed: number;
+  total: number;
+  handleToggleAvailable: () => void;
 };
 
-export const Filter = ({isHiddenOutOfStock, onHideOutOfStock}: Props) => {
+export const Filter: FC<Props> = (props) => {
+  const {isAvailable, showed, total, handleToggleAvailable} = props;
+
   return (
     <S.Filter>
-      <label>
-        {isHiddenOutOfStock ? 'Show All' : 'Hide Out-Of-Stock'}
-        <input
-          type="checkbox"
-          checked={isHiddenOutOfStock}
-          onChange={onHideOutOfStock}
+      <S.Text>
+        Products on page: {showed} of {total}
+      </S.Text>
+      <S.Label>
+        {isAvailable ? 'show all' : 'hide unavailable'}
+        <S.HiddenCheckbox
+          checked={isAvailable}
+          onChange={handleToggleAvailable}
         />
-      </label>
+      </S.Label>
     </S.Filter>
   );
 };

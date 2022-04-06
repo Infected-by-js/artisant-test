@@ -1,10 +1,10 @@
-import {useQuery} from 'react-query';
-import {getProducts} from '../api/ProductService';
-import {PAGE_LIMIT} from '../helpers/constants';
+import { useQuery } from "react-query";
+import { getProducts } from "../api/ProductService";
 
-export const useProducts = (page = 1) => {
-  const requestAll = () => getProducts({page, limit: PAGE_LIMIT});
-  const {data: products, isLoading, error} = useQuery('products', requestAll);
+export const useProducts = (page: number, limit: number) => {
+  const requestAll = () => getProducts({ page, limit });
 
-  return {products, isLoading, error};
+  const { data: products, isLoading, error } = useQuery("products", requestAll);
+
+  return { products, isLoading, error };
 };

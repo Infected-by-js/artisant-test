@@ -1,8 +1,12 @@
-import styled from 'styled-components';
-import {color, fontWeight, deviceMinWidth} from '../../assets/styles/constants';
+import styled from "styled-components";
+import {
+  color,
+  fontWeight,
+  deviceMinWidth
+} from "../../assets/styles/constants";
 
 export const Card = styled.div.attrs({
-  tabIndex: 0,
+  tabIndex: 0
 })`
   display: flex;
   flex-direction: column;
@@ -34,32 +38,6 @@ export const CardTop = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-`;
-
-export const Image = styled.img.attrs({
-  alt: 'product',
-  decoding: 'async',
-})`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  object-fit: cover;
-`;
-
-export const Video = styled.video.attrs({
-  loop: true,
-  muted: true,
-  autoPlay: true,
-  type: 'video/mp4',
-})`
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  object-fit: cover;
 `;
 
 export const Author = styled.p`

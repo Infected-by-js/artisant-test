@@ -1,24 +1,23 @@
-import {imagesUrl} from '../../api/endpoints';
-import type {Product} from '../../types/Product';
-import * as S from './ProductCard.styled';
+import { FC } from "react";
+import * as S from "./ProductCard.styled";
+import { ProductCardAvatar } from "./ProductCardAvatar";
 
-const isVideo = (src: string): boolean => {
-  return src.endsWith('.mp4');
+type Props = {
+  avatarName: string;
+  author: string;
+  name: string;
+  quantity: number;
+  quantityTotal: number;
+  price: number;
 };
 
-// FIXME: need to add lazy loading image component
-
-export const ProductCard = (props: Product) => {
-  const {fileName, author, name, quantity, quantityTotal, price} = props;
-
-  const Preview = ({src}: {src: string}) => {
-    return isVideo(fileName) ? <S.Video src={src} /> : <S.Image src={src} />;
-  };
+export const ProductCard: FC<Props> = (props) => {
+  const { avatarName, author, name, quantity, quantityTotal, price } = props;
 
   return (
     <S.Card>
       <S.CardTop>
-        <Preview src={`${imagesUrl}/${fileName}`} />
+        <ProductCardAvatar avatarName={avatarName} />
         <S.Author>
           created by
           <S.NameLink href="/userId">{author}</S.NameLink>
