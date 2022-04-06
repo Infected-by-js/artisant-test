@@ -21,5 +21,4 @@ export const Container = styled.div<ContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.2s linear;
 `;
