@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { color } from "../../assets/styles/constants";
+import styled from 'styled-components';
+import {color} from '../../helpers/constants';
 
 export const Spinner = styled.span`
-  display: "block";
+  display: 'block';
   width: 80px;
   height: 80px;
   border-radius: 50%;

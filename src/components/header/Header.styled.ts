@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { color, fontWeight } from "../../assets/styles/constants";
+import styled from 'styled-components';
+import {color, fontWeight} from '../../helpers/constants';
 
 export const Header = styled.header`
   margin-bottom: 32px;

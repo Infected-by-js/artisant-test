@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { color } from "../../assets/styles/constants";
+import styled from 'styled-components';
+import {color} from '../../helpers/constants';
 
 export const Container = styled.div`
   position: fixed;
@@ -11,6 +11,6 @@ export const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${color.grey};
+  background-color: ${color.white};
   transition: opacity 0.3s ease, background-color 0.3s ease;
 `;

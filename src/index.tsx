@@ -1,6 +1,6 @@
 import {createRoot} from 'react-dom/client';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import {GlobalStyles} from './assets/styles/GlobalStyles';
+import {GlobalStyles} from './helpers/GlobalStyles';
 import {AppRouter} from './router/AppRouter';
 
 const rootElement = document.getElementById('root');

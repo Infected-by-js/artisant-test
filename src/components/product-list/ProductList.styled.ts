@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {deviceMinWidth} from '../../assets/styles/constants';
+import {deviceMinWidth} from '../../helpers/constants';
 
 export const ProductList = styled.ul`
   margin-top: 2rem;

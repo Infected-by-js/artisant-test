@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {fontWeight, color, deviceMinWidth} from '../../assets/styles/constants';
+import {fontWeight, color, deviceMinWidth} from '../../helpers/constants';
 
 export const Filter = styled.div`
   display: flex;

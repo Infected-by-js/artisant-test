@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {color, fontWeight, deviceMinWidth} from '../../assets/styles/constants';
+import {color, fontWeight, deviceMinWidth} from '../../helpers/constants';
 
 export const Card = styled.div.attrs({
   tabIndex: 0,

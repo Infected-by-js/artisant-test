@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { deviceMinWidth, size } from "../../assets/styles/constants";
+import styled from 'styled-components';
+import {deviceMinWidth, size} from '../../helpers/constants';
 
 export const StyledContainer = styled.div`
   width: 100%;

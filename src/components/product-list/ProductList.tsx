@@ -1,8 +1,8 @@
+import {FC, HTMLAttributes, SyntheticEvent} from 'react';
 import type {IProduct} from '../../types/Product';
 import {getAvatarName} from '../../helpers/getAvatarName';
 import {ProductCard} from '../product-card/ProductCard';
 import * as S from './ProductList.styled';
-import {FC, HTMLAttributes, SyntheticEvent} from 'react';
 
 interface Props extends HTMLAttributes<HTMLElement> {
   products: IProduct[] | undefined;

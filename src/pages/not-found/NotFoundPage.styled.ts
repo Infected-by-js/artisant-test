@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {color, fontWeight} from '../../assets/styles/constants';
+import {color, fontWeight} from '../../helpers/constants';
 
 export const PageContainer = styled.div`
   min-height: 100vh;
