@@ -1,7 +1,7 @@
 import {FC} from 'react';
-import * as S from './ProductCard.styled';
 import {ProductCardAvatar} from './ProductCardAvatar';
 import {useObserver} from '../../hooks/useObserver';
+import * as S from './ProductCard.styled';
 
 type Props = {
   avatarName: string;
@@ -14,18 +14,16 @@ type Props = {
 
 export const ProductCard: FC<Props> = (props) => {
   const {avatarName, author, name, quantity, quantityTotal, price} = props;
-  const {refEl, canShow} = useObserver();
+  const {refEl, isInViewport} = useObserver();
 
   return (
     <S.Card ref={refEl}>
-      <S.CardTop>
-        {canShow && <ProductCardAvatar avatarName={avatarName} />}
-        <S.Author>
-          created by
-          <S.NameLink href="#">{author}</S.NameLink>
-        </S.Author>
-        <S.Title>{name}</S.Title>
-      </S.CardTop>
+      <ProductCardAvatar
+        avatarName={avatarName}
+        autorName={author}
+        isInViewport={isInViewport}
+        title={name}
+      />
       <S.CardBottom>
         <S.Available>
           <S.Text>available</S.Text>

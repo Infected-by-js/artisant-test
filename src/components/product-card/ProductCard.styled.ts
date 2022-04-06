@@ -27,13 +27,21 @@ export const Card = styled.div.attrs({
   }
 `;
 
-export const CardTop = styled.div`
+type CardTopProps = {
+  textColor: 'white' | 'black';
+};
+
+export const CardTop = styled.div<CardTopProps>`
   position: relative;
   padding: 1rem;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  color: ${({textColor}) =>
+    textColor === 'black' ? color.black : color.white};
+
+  transition: color 100ms ease;
 `;
 
 export const Author = styled.p`
@@ -43,7 +51,7 @@ export const Author = styled.p`
   font-weight: ${fontWeight.regular};
   font-size: 0.75rem;
   line-height: 1.5;
-  color: ${color.stroke};
+  color: inherit;
 
   cursor: pointer;
 `;
@@ -51,7 +59,7 @@ export const Author = styled.p`
 export const NameLink = styled.a`
   font-size: 0.875rem;
   font-weight: ${fontWeight.bold};
-  color: ${color.white};
+  color: inherit;
 
   ${Author}:hover &,
   ${Author}:focus-within & {
@@ -65,7 +73,7 @@ export const Title = styled.h3`
   font-size: 1.125rem;
   line-height: 133%;
 
-  color: ${color.white};
+  color: inherit;
 `;
 
 export const CardBottom = styled.div`

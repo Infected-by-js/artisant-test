@@ -6,9 +6,11 @@ import * as S from './LazyFile.styled';
 type Props = {
   src: string;
   fileType: FileType;
+  setIsFileLoaded?: (prop: boolean) => void;
 };
 
-export const LazyFile: FC<Props> = ({src, fileType}) => {
+export const LazyFile: FC<Props> = (props) => {
+  const {src, fileType, setIsFileLoaded = () => {}} = props;
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
 
@@ -16,17 +18,22 @@ export const LazyFile: FC<Props> = ({src, fileType}) => {
     return <h3>Invalid file...</h3>;
   }
 
+  const handleFileLoaded = () => {
+    setIsLoaded(true);
+    setIsFileLoaded(true);
+  };
+
   return (
     <>
       {fileType === 'img' ? (
         <S.Image
-          onLoad={() => setIsLoaded(true)}
+          onLoad={handleFileLoaded}
           src={src}
           onError={() => setIsError(true)}
         />
       ) : (
         <S.Video
-          onLoadedData={() => setIsLoaded(true)}
+          onLoadedData={handleFileLoaded}
           src={src}
           onError={() => setIsError(true)}
         />
